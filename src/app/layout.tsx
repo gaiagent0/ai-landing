@@ -31,6 +31,8 @@ export default function RootLayout({
       className="h-full antialiased"
       suppressHydrationWarning
     >
+      <head>
+      </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-[#0b0f1a] text-[#e2e8f0]">
         <I18nProviderWrapper>{children}</I18nProviderWrapper>
       </body>

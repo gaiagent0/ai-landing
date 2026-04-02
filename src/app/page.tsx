@@ -14,7 +14,8 @@ export default function Home() {
       <Services />
       <TargetAudience />
       <WhyChooseUs />
-      <ContactForm />
+          {/* ContactForm temporarily disabled due to Turnstile integration issues */}
+          {/* <ContactForm /> */}
       <Footer />
     </main>
   );

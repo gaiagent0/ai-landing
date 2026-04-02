@@ -5,6 +5,11 @@ import { useRef, useState, FormEvent } from "react";
 import { CheckCircle, XCircle } from "lucide-react";
 import { useI18n } from "@/lib/i18n/context";
 import { contactFormSchema } from "@/lib/validations";
+import dynamic from "next/dynamic";
+
+const TurnstileWidget = dynamic(() => import("@/components/TurnstileWidget"), {
+  ssr: false,
+});
 
 interface FormData {
   name: string;
@@ -93,15 +98,28 @@ export default function ContactForm() {
       });
 
       setIsSubmitting(true);
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      // Send form data to API endpoint
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          services: selectedServices,
+        }),
+      });
 
-      console.log("Form submitted:", { ...formData, services: selectedServices });
-
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      setSelectedServices([]);
-      setErrors({});
-      setTimeout(() => setSubmitStatus("idle"), 5000);
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setSelectedServices([]);
+        setErrors({});
+        setTimeout(() => setSubmitStatus("idle"), 5000);
+      } else {
+        setSubmitStatus("error");
+      }
     } catch (error: any) {
       if (error.errors) {
         const newErrors: FormErrors = {};
@@ -300,6 +318,9 @@ export default function ContactForm() {
                 <CheckCircle size={14} />
                 {t.contact.privacyNote}
               </p>
+
+              {/* Cloudflare Turnstile */}
+              <TurnstileWidget siteKey="0x4AAAAAACzlhFr_ze7UB50H" />
 
               {/* Submit Button */}
               <button
