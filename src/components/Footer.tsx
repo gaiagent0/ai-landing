@@ -38,11 +38,11 @@ export default function Footer() {
               {t.footer.description}
             </p>
 <a
-              href="mailto:contact@gaiagent.hu"
+              href="mailto:contact@gaiagent.cc"
               className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors text-sm"
             >
               <Mail size={16} />
-              contact@gaiagent.hu
+              contact@gaiagent.cc
             </a>
           </div>
 
