@@ -27,22 +27,22 @@ export default function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-lg flex items-center justify-center">
-                <Brain className="text-white" size={20} />
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                TechServices
-              </span>
+<div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                 <Brain className="text-blue-600" size={20} />
+               </div>
+               <span className="text-xl font-bold text-white">
+                 gaiagent
+               </span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
               {t.footer.description}
             </p>
-            <a
-              href="mailto:contact@techservices.com"
+<a
+              href="mailto:contact@gaiagent.hu"
               className="inline-flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors text-sm"
             >
               <Mail size={16} />
-              {t.footer.email}
+              contact@gaiagent.hu
             </a>
           </div>
 
