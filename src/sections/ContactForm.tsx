@@ -38,6 +38,7 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
 
   const servicesOptions = [
     { value: "ai", label: t.contactServices.ai },
@@ -104,6 +105,7 @@ export default function ContactForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "cf-turnstile-token": turnstileToken,
         },
         body: JSON.stringify({
           ...formData,
@@ -320,7 +322,7 @@ export default function ContactForm() {
               </p>
 
               {/* Cloudflare Turnstile */}
-              <TurnstileWidget siteKey="0x4AAAAAACzlhFr_ze7UB50H" />
+              <TurnstileWidget siteKey="0x4AAAAAACzlhFr_ze7UB50H" onToken={setTurnstileToken} />
 
               {/* Submit Button */}
               <button
